@@ -1,5 +1,8 @@
 import router from '@/routes';
 
+const API_ENDPOINT = 'https://www.omdbapi.com';
+const API_KEY = '7035c60c';
+
 export default {
   namespaced: true,
   state() {
@@ -35,12 +38,13 @@ export default {
         return ;
       }
       
-      const { Response, Search, totalResults } = await fetch('/.netlify/functions/movies', {
-          body: JSON.stringify({
-            keyword,
-            page
-          })
-        }).then((res) => res.json());
+      const { Response, Search, totalResults } = await fetch(`${API_ENDPOINT}?apikey=${API_KEY}&s=${keyword}&page=${page}`).then((res) => res.json());
+      // const { Response, Search, totalResults } = await fetch('/.netlify/functions/movies', {
+      //     body: JSON.stringify({
+      //       keyword,
+      //       page
+      //     })
+      //   }).then((res) => res.json());
       if (Response === 'True') {
         commit('setSearch', Search);
         commit('setTotalResults', totalResults);
