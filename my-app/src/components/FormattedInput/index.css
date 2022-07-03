@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
+input {
+  width: 600px;
+  height: 64px;
+  margin: 40px;
+  padding: 10px 20px;
+  font-size: large;
+}
